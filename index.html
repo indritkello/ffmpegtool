@@ -1,39 +1,73 @@
-
+﻿
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>AngularJS Sandbox</title>
+    <meta charset="utf-8">
+    <title>ffmpeg Tool</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 </head>
 <body>
 
-	<div ng-app="ffmpegTool">
-		<div ng-controller="mainController">
-			<p>The name is <span ng-bind="fileName"></span></p>
+    <div ng-app="ffmpegTool" class="container">
 
-		<h2>Options</h2>
-		
-		<label>Input Filename
-			<input type="text" id="filename" ng-model="fileName" drag-and-drop-target>
-		</label>
+        <div ng-controller="mainController">
 
-		<h2>Start</h2>
-		<input type="text" id="start" ng-model="start.hour" />
-		<input type="text" id="start" ng-model="start.minute" />
+			<h2>Options</h2>
 
-		<h2>Command Line</h2>
-		
-		<textarea id="commandLine" ng-bind="getCommandLine()" cols="125" rows="10" readonly></textarea>
-		<button ng-click="copyToClipboard('#commandLine')">Copy</button>
-		</div>
-	</div>
+            <div class="form-row">
+			
+				<div class="form-group col-xs-6">
+					<label>Input Filename</label>
+					<input type="text" class="form-control" ng-model="input.fileName" drag-and-drop-target placeholder="Input filename">
+					<small>You can drag and drop your file to this box.</small>
+				</div>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-	<script src="utility.js"></script>
-	
-	<script src="app.js"></script>
-	<script src="controllers/main.js"></script>
-	<script src="directives/dragAndDropTarget.js"></script>
-	
+				<div class="form-group col-xs-6">
+					<label>Output Filename</label>
+					<input type="text" class="form-control" ng-model="output.fileName" placeholder="Output filename">
+					<input type="checkbox" class="form-check-input">Automatic</input>
+				</div>
+            </div>
+
+			<h2>Start</h2>
+            <div class="form-row form-group">
+				<div class="form-group">
+					<div class="col-xs-4">
+						<input type="number" class="form-control" min="0" ng-model="start.hour" />
+					</div>
+					<div class="col-xs-4">
+						<input type="number" class="form-control" min="0" ng-model="start.minute" />
+					</div>
+					<div class="col-xs-4">
+						<input type="number" class="form-control" min="0" ng-model="start.second" />
+					</div>
+				</div>
+            </div>
+
+			<h2>End</h2>
+            <div class="form-row">
+				<div class="form-group">
+					<input type="number" class="form-control" min="0" ng-model="end.hour" />
+					<input type="number" class="form-control" min="0" ng-model="end.minute" />
+					<input type="number" class="form-control" min="0" ng-model="end.second" />
+				</div>
+            </div>
+
+			<h2>Command Line</h2>
+            <div class="form-row">
+                <textarea id="commandLine" class="form-control"  ng-bind="getCommandLine()" cols="125" rows="10" readonly></textarea>
+                <button ng-click="copyToClipboard('#commandLine')">Copy</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="utility.js"></script>
+
+    <script src="app.js"></script>
+    <script src="controllers/main.js"></script>
+    <script src="directives/dragAndDropTarget.js"></script>
+
 </body>
 </html>

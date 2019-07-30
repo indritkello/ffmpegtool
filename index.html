@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>AngularJS Sandbox</title>
+</head>
+<body>
+
+	<div ng-app="ffmpegTool">
+		<div ng-controller="mainController">
+			<p>The name is <span ng-bind="fileName"></span></p>
+
+		<h2>Options</h2>
+		
+		<label>Input Filename
+			<input type="text" id="filename" ng-model="fileName" drag-and-drop-target>
+		</label>
+
+		<h2>Start</h2>
+		<input type="text" id="start" ng-model="start.hour" />
+		<input type="text" id="start" ng-model="start.minute" />
+
+		<h2>Command Line</h2>
+		
+		<textarea id="commandLine" ng-bind="getCommandLine()" cols="125" rows="10" readonly></textarea>
+		<button ng-click="copyToClipboard('#commandLine')">Copy</button>
+		</div>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="utility.js"></script>
+	
+	<script src="app.js"></script>
+	<script src="controllers/main.js"></script>
+	<script src="directives/dragAndDropTarget.js"></script>
+	
+</body>
+</html>

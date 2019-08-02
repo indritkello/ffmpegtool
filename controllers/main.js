@@ -1,7 +1,7 @@
 
 app.controller('mainController', function($scope) {
-  	
-	$scope.fileName = "";
+	  
+	$scope.automaticOutputFilename = false;
   
     $scope.start = {
         time: new Date()
@@ -18,7 +18,7 @@ app.controller('mainController', function($scope) {
 	$scope.output = {
 		fileName: ""
 	};	
-    
+
 	$scope.getCommandLine = function() {
 		// ffmpeg -ss hh:mm:ss -i input.mp4 -c copy -t hh:mm:ss -bsf:a aac_adtstoasc output.mp4
 		return "ffmpeg" 
@@ -33,6 +33,36 @@ app.controller('mainController', function($scope) {
 		;
 	}
   
+	$scope.inputFilenameChanged = function() {
+		if ($scope.automaticOutputFilename) {
+			$scope.refreshOutputFilename();
+		}
+	}
+
+	$scope.refreshOutputFilename = function() {
+		
+		let inputFilename = getFilenameWithoutExtension($scope.input.fileName);
+		let inputExtension = getExtension($scope.input.fileName);
+
+		$scope.output.fileName = inputFilename + "_output" + inputExtension;
+	}
+
+	function getFilenameWithoutExtension(path) {
+		let index = path.lastIndexOf('.');
+		if (index > -1) {
+			return path.substring(0, index);
+		}
+		return '';
+	}
+
+	function getExtension(path) {
+		let index = path.lastIndexOf('.');
+		if (index > -1) {
+			return path.substring(index);
+		}
+		return '';
+	}
+
   $scope.copyToClipboard = function(selector) {
 	var copyTextarea = document.querySelector(selector);
 	

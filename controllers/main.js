@@ -3,16 +3,12 @@ app.controller('mainController', function($scope) {
   	
 	$scope.fileName = "";
   
-	$scope.start = {
-		hour: 0,
-		minute: 0,
-		second: 0
+    $scope.start = {
+        time: new Date()
 	};
 
 	$scope.end = {
-		hour: 0,
-		minute: 0,
-		second: 0
+        time: new Date()
 	};
 
 	$scope.input = {
@@ -26,12 +22,12 @@ app.controller('mainController', function($scope) {
 	$scope.getCommandLine = function() {
 		// ffmpeg -ss hh:mm:ss -i input.mp4 -c copy -t hh:mm:ss -bsf:a aac_adtstoasc output.mp4
 		return "ffmpeg" 
-		+ " -ss " 
-		+ $scope.start.hour.pad(2).toString()  + ":" + $scope.start.minute.pad(2).toString() + ":" + $scope.start.second.pad(2).toString() 
+            + " -ss "
+            + $scope.start.time.getHours() + ":" + $scope.start.time.getMinutes() + ":" + $scope.start.time.getSeconds() 
 		+ " -i " + $scope.input.fileName	
 		+ " -c copy"
 		+ " -t "
-		+ $scope.end.hour.pad(2).toString()  + ":" + $scope.end.minute.pad(2).toString() + ":" + $scope.end.second.pad(2).toString()
+            + $scope.end.time.getHours() + ":" + $scope.end.time.getMinutes() + ":" + $scope.end.time.getSeconds()
 		+ " -bsf:a aac_adtstoasc "
 		+ $scope.output.fileName
 		;

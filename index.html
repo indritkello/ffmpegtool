@@ -9,57 +9,49 @@
 <body>
 
     <div ng-app="ffmpegTool" class="container">
-
         <div ng-controller="mainController">
 
 			<h2>Options</h2>
-
-            <div class="form-row">
-			
-				<div class="form-group col-xs-6">
+            <div class="form-row">			
+				<div class="form-group col-xs-6 col-md-6 col-lg-6">
 					<label>Input Filename</label>
 					<input type="text" class="form-control" ng-model="input.fileName" drag-and-drop-target placeholder="Input filename">
 					<small>You can drag and drop your file to this box.</small>
 				</div>
 
-				<div class="form-group col-xs-6">
-					<label>Output Filename</label>
-					<input type="text" class="form-control" ng-model="output.fileName" placeholder="Output filename">
-					<input type="checkbox" class="form-check-input">Automatic</input>
-				</div>
+                <div class="form-group col-xs-6 col-md-6 col-lg-6">
+                    <label>Output Filename</label>
+                    <input type="text" class="form-control" ng-model="output.fileName" placeholder="Output filename">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="cbInput">
+                        <label class="form-check-label" for="cbInput">Automatic</label>
+                    </div>                    
+                </div>
             </div>
 
-			<h2>Start</h2>
+			
             <div class="form-row form-group">
-				<div class="form-group">
-					<div class="col-xs-4">
-						<input type="number" class="form-control" min="0" ng-model="start.hour" />
-					</div>
-					<div class="col-xs-4">
-						<input type="number" class="form-control" min="0" ng-model="start.minute" />
-					</div>
-					<div class="col-xs-4">
-						<input type="number" class="form-control" min="0" ng-model="start.second" />
-					</div>
-				</div>
+                <div class="form-group col-xs-6 col-md-6 col-lg-6">
+                    <label>Start</label>
+                    <input type="time" step="2" class="form-control" ng-model="start.time" />
+                </div>
+                <div class="form-group col-xs-6 col-md-6 col-lg-6">
+                    <label>End</label>
+                    <input type="time" step="2" class="form-control" ng-model="end.time" />
+                </div>
             </div>
-
-			<h2>End</h2>
+            		
             <div class="form-row">
-				<div class="form-group">
-					<input type="number" class="form-control" min="0" ng-model="end.hour" />
-					<input type="number" class="form-control" min="0" ng-model="end.minute" />
-					<input type="number" class="form-control" min="0" ng-model="end.second" />
-				</div>
-            </div>
+                <label>Command Line</label>
+                <textarea id="commandLine" class="form-control" ng-bind="getCommandLine()" cols="125" rows="10" readonly></textarea>
+                <div class="panel panel-default col-lg-12">
+                    <div class="panel-body">
+                        <button ng-click="copyToClipboard('#commandLine')" class="btn btn-outline-success btn-lg btn-block">Copy</button>
+                    </div>
+                </div>
+                </div>
 
-			<h2>Command Line</h2>
-            <div class="form-row">
-                <textarea id="commandLine" class="form-control"  ng-bind="getCommandLine()" cols="125" rows="10" readonly></textarea>
-                <button ng-click="copyToClipboard('#commandLine')">Copy</button>
             </div>
-
-        </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>

@@ -3,12 +3,10 @@ app.directive('dragAndDropTarget', ['$rootScope', function ($rootScope) {
         restrict: 'A',
         $scope: {
             onDrop: '&',
-            fileName: '='
+            fileName: '=',
+            fileDropped: '&'
         },
         link: function (scope, el, attrs, controller) {
-
-            var id = attrs.id;
-            console.log('directive applied to ' + id);
 
             el.bind("drop", function (e) {
 
@@ -26,7 +24,13 @@ app.directive('dragAndDropTarget', ['$rootScope', function ($rootScope) {
 
                 scope.input.fileName = file.name;
                 scope.$apply();
-
+                
+                if (scope.fileDropped) {
+                    scope.fileDropped.call($scope.parent, file.name);
+                } else {
+                    console.log("file dropped but no event handler from parent");
+                    console.log(scope.fileDropped);
+                }
                 console.log(scope.fileName);
             });
 

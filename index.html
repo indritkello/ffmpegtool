@@ -15,7 +15,7 @@
             <div class="form-row">			
 				<div class="form-group col-xs-6 col-md-6 col-lg-6">
 					<label>Input Filename</label>
-					<input type="text" class="form-control" ng-model="input.fileName" drag-and-drop-target placeholder="Input filename" ng-change="inputFilenameChanged()" ng-model-options="{updateOn: 'blur'}">
+					<input type="text" class="form-control" ng-model="input.fileName" drag-and-drop-target file-dropped="inputFilenameChanged()" placeholder="Input filename" ng-change="inputFilenameChanged()" ng-model-options="{updateOn: 'blur'}">
 					<small>You can drag and drop your file to this box.</small>
 				</div>
 

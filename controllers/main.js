@@ -23,13 +23,13 @@ app.controller('mainController', function($scope) {
 		// ffmpeg -ss hh:mm:ss -i input.mp4 -c copy -t hh:mm:ss -bsf:a aac_adtstoasc output.mp4
 		return "ffmpeg" 
             + " -ss "
-            + $scope.start.time.getHours() + ":" + $scope.start.time.getMinutes() + ":" + $scope.start.time.getSeconds() 
-		+ " -i " + $scope.input.fileName	
-		+ " -c copy"
-		+ " -t "
-            + $scope.end.time.getHours() + ":" + $scope.end.time.getMinutes() + ":" + $scope.end.time.getSeconds()
-		+ " -bsf:a aac_adtstoasc "
-		+ $scope.output.fileName
+            + $scope.start.time.getHours().pad(2) + ":" + $scope.start.time.getMinutes().pad(2) + ":" + $scope.start.time.getSeconds().pad(2) 
+			+ " -i " + $scope.input.fileName	
+			+ " -c copy"
+			+ " -t "
+       	    + $scope.end.time.getHours().pad(2) + ":" + $scope.end.time.getMinutes().pad(2) + ":" + $scope.end.time.getSeconds().pad(2)
+			+ " -bsf:a aac_adtstoasc "
+			+ $scope.output.fileName
 		;
 	}
   

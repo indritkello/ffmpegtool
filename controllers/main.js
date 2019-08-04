@@ -1,7 +1,7 @@
 
 app.controller('mainController', function($scope) {
 	  
-	$scope.automaticOutputFilename = false;
+	$scope.automaticOutputFilename = true;
   
     $scope.start = {
         time: new Date()
@@ -52,7 +52,7 @@ app.controller('mainController', function($scope) {
 		if (index > -1) {
 			return path.substring(0, index);
 		}
-		return '';
+		return path;//if it has no extension
 	}
 
 	function getExtension(path) {

@@ -23,14 +23,12 @@ app.directive('dragAndDropTarget', ['$rootScope', function ($rootScope) {
                 console.log(dt);
 
                 scope.input.fileName = file.name;
+                if (scope.automaticOutputFilename) {
+                    scope.refreshOutputFilename();
+                }
+
                 scope.$apply();
                 
-                if (scope.fileDropped) {
-                    scope.fileDropped.call($scope.parent, file.name);
-                } else {
-                    console.log("file dropped but no event handler from parent");
-                    console.log(scope.fileDropped);
-                }
                 console.log(scope.fileName);
             });
 
